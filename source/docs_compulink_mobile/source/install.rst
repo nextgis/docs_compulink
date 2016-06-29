@@ -19,7 +19,7 @@
 источников можно деактивировать.
 
 Для запуска программы используется ярлык, автоматически создаваемый при её 
-установке (см. :numref:`installed_shortcut_pic`). 
+установке (:numref:`installed_shortcut_pic`). 
 
 .. figure:: _static/installed.png
    :name: installed_shortcut_pic
@@ -28,3 +28,23 @@
 
    Ярлык приложения в интерфейсе ОС Android.
    
+Если при запуске приложения на устройстве отключен датчик GPS, появляется предупреждение "GPS отключен. Для корректной работы приложения включите GPS!" (:numref:`gps_error_shortcut_pic`).
+
+.. figure:: _static/gps_error.png
+   :name: gps_error_shortcut_pic
+   :align: center
+   :height: 10cm
+
+   Предупреждение при отключенном GPS-датчике 
+
+После нажатия кнопки ОК появится окно со стандартными системными настройками "Мое местоположение", где нужно активировать пункт "По спутникам GPS" (:numref:`gps_settings_shortcut_pic`).
+
+.. figure:: _static/gps_settings.png
+   :name: gps_error_shortcut_pic
+   :align: center
+   :height: 10cm
+
+   Настройки местоположения
+			
+Переход назад автоматически возвращает пользователя в главное окно приложения.
+
