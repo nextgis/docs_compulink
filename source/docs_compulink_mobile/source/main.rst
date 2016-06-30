@@ -97,9 +97,15 @@
 
 
    
+.. figure:: _static/coords_error.png
+   :name: start_sync
+   :align: center
+   :height: 10cm
    
+   Начальная синхронизация приложения.
    
-   
+
+
    
    
 
