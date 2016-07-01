@@ -234,6 +234,19 @@ latex_elements = {
 # Additional stuff for the LaTeX preamble.
 #'preamble': 'latex_preamble'
 
+'utf8extra': r'''
+\DeclareUnicodeCharacter{00A0}{\nobreakspace}
+\DeclareUnicodeCharacter{2196}{\ensuremath{\nwarrow}}
+\DeclareUnicodeCharacter{2197}{\ensuremath{\nearrow}}
+\DeclareUnicodeCharacter{2198}{\ensuremath{\searrow}}
+\DeclareUnicodeCharacter{2199}{\ensuremath{\swarrow}}
+\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\DeclareUnicodeCharacter{2191}{\ensuremath{\uparrow}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{2193}{\ensuremath{\downarrow}}
+''',
+
+    
 # Latex figure (float) alignment
 'figure_align': 'htbp'
 }
@@ -243,7 +256,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'Compulink_docs_Mobile.tex', u'Документация Компьюлинк Мониторинг строительства',
+  (master_doc, 'Compulink_docs_Mobile.tex', u'Документация Компьюлинк (Мониторинг строительства)',
    author, 'manual', 'true')
 ]
 
