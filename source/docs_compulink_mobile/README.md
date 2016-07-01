@@ -1,5 +1,5 @@
-User documentation for NextGIS Mobile
+Пользовательская документация Компьюлинк Мониторинг строительства
 
-License
+Лицензия
 -------------
-This documentation is licensed under CC-BY-SA 3.0
+Документация имеет лицензию CC-BY-SA 3.0

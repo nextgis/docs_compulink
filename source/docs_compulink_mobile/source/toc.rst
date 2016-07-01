@@ -13,9 +13,4 @@
    intro
    install
    main
-   load_geodata
-   editing
-   tracks
-   share  
-   layer_settings
-   ngw_integration
+   
