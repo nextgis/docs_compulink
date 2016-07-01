@@ -1,4 +1,4 @@
-.. sectionauthor:: Дмитрий Барышников <dmitry.baryshnikov@nextgis.ru>
+.. sectionauthor:: Александр Мурый <amuriy@gmail.com>
 
 .. Compulink Mobile TOC
 
@@ -12,5 +12,9 @@
 
    intro
    install
-   main
+   main_window
+   works
+   common_tools
+   
+
    

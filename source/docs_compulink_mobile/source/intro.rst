@@ -1,7 +1,7 @@
-.. sectionauthor:: Дмитрий Барышников <dmitry.baryshnikov@nextgis.ru>
+.. sectionauthor:: Александр Мурый <amuriy@gmail.com>
 
-
-
+.. _compulink_mobile_intro:
+   
 Введение
 ========
 

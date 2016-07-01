@@ -1,6 +1,6 @@
-.. sectionauthor:: Дмитрий Барышников <dmitry.baryshnikov@nextgis.ru>
+.. sectionauthor:: Александр Мурый <amuriy@gmail.com>
 
-.. _ngmobile_install:
+.. _compulink_mobile_install:
 
 Установка и запуск
 ==================
