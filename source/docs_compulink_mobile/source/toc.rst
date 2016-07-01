@@ -14,7 +14,9 @@
    install
    main_window
    works
-   common_tools
+   settings
+   
+   
    
 
    
