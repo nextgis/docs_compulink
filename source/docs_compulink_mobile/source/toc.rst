@@ -15,7 +15,8 @@
    main_window
    works
    settings
-   
+   ..
+	  glossary
    
    
 
