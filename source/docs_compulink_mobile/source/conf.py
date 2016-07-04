@@ -248,7 +248,9 @@ latex_elements = {
 
     
 # Latex figure (float) alignment
-'figure_align': 'htbp'
+'figure_align': 'htbp',
+
+'pageautorefname': 'стр. '
 }
 
 
@@ -256,7 +258,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'Compulink_docs_Mobile.tex', u'Документация Компьюлинк (Мониторинг строительства)',
+  (master_doc, 'compulink_docs_mobile.tex', u'Руководство пользователя мобильного приложения "Мониторинг строительства"',
    author, 'manual', 'true')
 ]
 
