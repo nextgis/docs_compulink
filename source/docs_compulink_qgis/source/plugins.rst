@@ -54,8 +54,9 @@ QGIS была разработана на архитектуре с поддер
 
 .. toctree::
    :maxdepth: 1
-
+   
    compulink_tools
+   qms
    qmerger
    reconstructLine
    misc_plugins

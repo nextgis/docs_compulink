@@ -1,6 +1,7 @@
-.. sectionauthor:: Дмитрий Барышников <dmitry.baryshnikov@nextgis.ru>
-
+.. sectionauthor:: Александр Мурый <amuriy@gmail.com> 
 .. _reconstructLine:
     
 Модуль расширения ReconstructLine
-===============
+==================================
+
+
