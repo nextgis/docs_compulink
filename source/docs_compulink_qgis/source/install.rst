@@ -65,7 +65,7 @@ http://nextgis.ru/programs/qgis/ngq-builds/NextGIS_QGIS_Compulink-15.4.exe
 
 На седьмой странице (см. рис. :numref:`installPage06`) работа мастера установки будет завершена и пользователю будет предложено перезагрузиться для полного завершения установки.
 
-.. figure:: _static/installPage06.png
+.. figure:: _static/installPage07.png
    :name: installPage06
    :align: center
 
