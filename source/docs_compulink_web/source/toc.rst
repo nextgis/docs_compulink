@@ -3,8 +3,8 @@
 
 .. NextGIS Web TOC
 
-Документация NextGIS Web
-========================
+Документация NextGIS Web Compulink
+===================================
 
 Cодержание:
 
@@ -12,14 +12,18 @@ Cодержание:
    :maxdepth: 2
 
    intro
-   quick_tutorial
-   general   
+   ..
+	  quick_tutorial
+	  general
+   
    admin_interface
    layers
    mapstyles    
    layers_settings 
    webmaps_admin       
    webmaps_client
-   admin_tasks 
-   sysadmin     
-   extension
+   ..
+	  admin_tasks 
+	  sysadmin     
+	  extension
+   glossary

@@ -1365,7 +1365,7 @@ OSM-black
 OSM landuse-polygon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Стили NextGIS Web поддерживают различные штриховки (см. :numref:`ngweb_mapstyle_hatch_demo_pic`).
+Стили NextGIS Web Compulink поддерживают различные штриховки (см. :numref:`ngweb_mapstyle_hatch_demo_pic`).
 
 .. code-block:: xml
 
