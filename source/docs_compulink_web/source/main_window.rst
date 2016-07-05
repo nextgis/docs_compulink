@@ -1,6 +1,6 @@
 .. sectionauthor:: Александр Мурый <amuriy@gmail.com>
 
-.. _compulink_web:
+.. _compulink_web_main_window:
 
 Интерфейс NextGIS Web Compulink
 ==================================
@@ -28,6 +28,37 @@
 Дерево проектов и объектов
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. figure:: _static/compulink/main_window_toc.png
+   :name: main_window_toc
+   :align: center
+   :width: 7cm
+
+   Дерево проектов и объектов строительства
+
+|
+|
+
+   
+.. figure:: _static/compulink/basemaps.png
+   :name: basemaps
+   :align: center
+   :width: 7cm
+
+   Подключаемые картографические подложки
+
+Перечень подключаемых картографических подложек:
+
+* OpenStreetMap;
+* Google – Спутник;
+* Google – Схема;
+* Google – Гибрид;
+* Google –  Рельеф;
+* Bing – Снимки;
+* Bing – Гибрид;
+* Bing – Схема;
+* Пустой.
+
+   
 |
 |
 |
@@ -78,6 +109,22 @@
    :width: 15cm
 
    Измерение площади полигонов в окне карты
+
+
+.. figure:: _static/compulink/map_window_info.png
+   :name: map_window_info
+   :align: center
+   :width: 15cm
+
+   Инструмент идентификации объектов в окне карты
+
+
+.. figure:: _static/compulink/map_window_info_photo.png
+   :name: map_window_info_photo
+   :align: center
+   :width: 15cm
+
+   Прикрепленная фотография в атрибутах объекта 
    
 |
 |
@@ -92,16 +139,32 @@
    :align: center
    :width: 15cm
 
-   Измерение площади полигонов в окне карты
+   Таблица объектов
+
+
+.. figure:: _static/compulink/map_window_attr.png
+   :name: map_window_attr
+   :align: center
+   :width: 15cm
+
+   Меню таблицы объектов
+
+   
+   
 
 
 
 
 
-Переключатель слоев
+Слои ВОЛС
 ~~~~~~~~~~~~~~~~~~~~
 
+.. figure:: _static/compulink/layers.png
+   :name: layers
+   :align: center
+   :width: 15cm
 
+   Слои ВОЛС в главном окне
 
 |
 |
@@ -110,3 +173,10 @@
 
 Легенда
 ~~~~~~~~~~~~~~~
+
+.. figure:: _static/compulink/legend.png
+   :name: legend
+   :align: center
+   :width: 15cm
+
+   Условные обозначения (легенда карты)

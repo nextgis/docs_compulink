@@ -1,6 +1,7 @@
 .. sectionauthor:: Артём Светлов <artem.svetlov@nextgis.ru>
+.. sectionauthor:: Александр Мурый <amuriy@gmail.com>
 
-.. _ngw_intro:
+.. _compulink_web_intro:
 
 Введение
 ========
