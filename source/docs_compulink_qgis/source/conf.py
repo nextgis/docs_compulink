@@ -262,7 +262,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'Compulink_docs_QGIS.tex', u'Документация Компьюлинк (ГИС контроля строительства ВОЛС)',
+  (master_doc, 'compulink_docs_desktop.tex', u'Руководство пользователя настольной ГИС контроля строительства ВОЛС',
    author , 'manual', 'true'),
 ]
 
