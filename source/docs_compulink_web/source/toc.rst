@@ -1,6 +1,4 @@
-.. sectionauthor:: Дмитрий Барышников <dmitry.baryshnikov@nextgis.ru>
-.. sectionauthor:: Артём Светлов <artem.svetlov@nextgis.ru>
-
+.. sectionauthor:: Александр Мурый <amuriy@gmail.com>
 .. NextGIS Web TOC
 
 Документация NextGIS Web Compulink
@@ -12,26 +10,12 @@ Cодержание:
    :maxdepth: 2
 
    intro
-   ..
-	  quick_tutorial
-	  general
    main_window
    editor
    pleer
    resources
    control_panel
    reports
-   ..
-	  admin_interface
-	  layers
-	  mapstyles    
-	  layers_settings 
-	  webmaps_admin       
-   ..
-	  webmaps_client
-   ..
-	  admin_tasks 
-	  sysadmin     
-	  extension
-   ..
-	  glossary
+   glossary
+   
+   

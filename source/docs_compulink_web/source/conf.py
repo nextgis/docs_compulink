@@ -258,7 +258,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'compulink_docs_web.tex', u'Документация Компьюлинк (NextGIS Web Compulink)',
+  (master_doc, 'compulink_docs_web.tex', u'Руководство пользователя геоинформационной системы контроля строительства ВОЛС (NextGIS Web Compulink)',
    author, 'manual', 'true'),
 ]
 
