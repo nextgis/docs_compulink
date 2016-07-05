@@ -15,15 +15,23 @@ Cодержание:
    ..
 	  quick_tutorial
 	  general
-   
-   admin_interface
-   layers
-   mapstyles    
-   layers_settings 
-   webmaps_admin       
-   webmaps_client
+   main_window
+   editor
+   pleer
+   resources
+   control_panel
+   reports
+   ..
+	  admin_interface
+	  layers
+	  mapstyles    
+	  layers_settings 
+	  webmaps_admin       
+   ..
+	  webmaps_client
    ..
 	  admin_tasks 
 	  sysadmin     
 	  extension
-   glossary
+   ..
+	  glossary
