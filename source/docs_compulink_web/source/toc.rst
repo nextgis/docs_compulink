@@ -9,6 +9,7 @@ Cодержание:
 .. toctree::
    :maxdepth: 2
 
+   start
    intro
    main_window
    editor
