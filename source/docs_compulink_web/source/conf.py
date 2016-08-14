@@ -262,6 +262,8 @@ latex_documents = [
    author, 'manual', 'true'),
 ]
 
+latex_additional_files = ['../iftex.sty']
+
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 # latex_logo = '_static/ngwIcon.png'
