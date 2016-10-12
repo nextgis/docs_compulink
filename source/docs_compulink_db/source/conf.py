@@ -228,7 +228,6 @@ latex_elements = {
 
 'classoptions': ',openany,oneside', 
 
-'babel' : '\\usepackage[russian]{babel}',
 
 'fontpkg': '\\usepackage{dejavu}',
 # Additional stuff for the LaTeX preamble.
@@ -246,7 +245,12 @@ latex_elements = {
 \DeclareUnicodeCharacter{2193}{\ensuremath{\downarrow}}
 ''',
 
-    
+'babel': r'''
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage[utf8]{inputenc}
+''',
+
 # Latex figure (float) alignment
 'figure_align': 'htbp',
 
