@@ -54,7 +54,7 @@ config.ini (см. далее):
 
 .. code:: bash
 
-    sudo -u postgres createdb -O ngw_admin --encoding=UTF8 db_ngw
+    sudo -u postgres createdb -O ngw_admin --encoding=UTF8 compulink_ngw
     sudo nano /etc/postgresql/9.3/main/pg_hba.conf
 
 Отредактируем файл таким образом, чтобы в нём присутствовали следующие
@@ -87,10 +87,10 @@ postgresql-{version}-postgis-{version} и установите его:
 .. code:: bash
 
     sudo apt-get install postgresql-9.3-postgis-2.1
-    sudo -u postgres psql -d db_ngw -c 'CREATE EXTENSION postgis;'
-    sudo -u postgres psql -d db_ngw -c 'ALTER TABLE geometry_columns OWNER TO ngw_admin;'
-    sudo -u postgres psql -d db_ngw -c 'ALTER TABLE spatial_ref_sys OWNER TO ngw_admin;'
-    sudo -u postgres psql -d db_ngw -c 'ALTER TABLE geography_columns OWNER TO ngw_admin;'
+    sudo -u postgres psql -d compulink_ngw -c 'CREATE EXTENSION postgis;'
+    sudo -u postgres psql -d compulink_ngw -c 'ALTER TABLE geometry_columns OWNER TO ngw_admin;'
+    sudo -u postgres psql -d compulink_ngw -c 'ALTER TABLE spatial_ref_sys OWNER TO ngw_admin;'
+    sudo -u postgres psql -d compulink_ngw -c 'ALTER TABLE geography_columns OWNER TO ngw_admin;'
 
 После этих операций будут созданы БД PostgreSQL с установленным в ней
 :term:`PostGIS` и пользователь :abbr:`БД (база данных)`, который станет ее владельцем, а также 
@@ -100,7 +100,7 @@ postgresql-{version}-postgis-{version} и установите его:
 
 .. code:: bash
 
-    psql -h localhost -d db_ngw -U ngw_admin -c "SELECT PostGIS_Full_Version();"
+    psql -h localhost -d compulink_ngw -U ngw_admin -c "SELECT PostGIS_Full_Version();"
 
 Если вы разворачиваете систему на чистом сервере, и вам надо сделать ещё
 одну базу PostGIS для хранения данных, то можно включить доступ к ней из сети
@@ -351,7 +351,7 @@ postgresql-{version}-postgis-{version} и установите его:
 	# Имя сервера БД 
 	database.host = localhost
 	# Имя БД на сервере 
-	database.name = db_ngw
+	database.name = compulink_ngw
 	# Имя пользователя БД 
 	database.user = ngw_admin
 	# Пароль пользователя БД 
@@ -492,134 +492,11 @@ postgresql-{version}-postgis-{version} и установите его:
     env/bin/nextgisweb --config config.ini initialize_db --drop
 
 
-Миграция и резервное копирование
---------------------------------
+Инициализация структуры данных Compulink
+----------------------------------------
 
-Миграция – это процедура по переносу данных и настроенной NextGIS Web между 
-серверами. В ходе процедуры миграции создается резервная копия, в которую 
-записывается:
-
-* Всё содержимое базы данных NextGIS Web: информация о слоях, стили, аккаунты 
-  пользователей, то есть всё, что настраивается в интерфейсе администратора.
-* Векторные данные, которые были загружены через интерфейс администратора.
-* Растровые данные, которые были загружены через интерфейс администратора. 
-
-Файл config.ini в резервную копию не включаются, его надо переносить отдельно.
-
-Для запуска процедуры миграции необходимо выполнять следующие команды:
+Инициализация структуры данных Compulink выполняется следующим образом:
 
 .. code:: bash
 
-	env/bin/nextgisweb --config config.ini backup file.ngwbackup
-	env/bin/nextgisweb --config config.ini restore file.ngwbackup
-
-Резервная копия – это ZIP-архив. Для отключения архивации резервной копии 
-необходимо указать ключ —no-zip. При это будет создан новый каталог с указанным 
-именем.
-
-.. code:: bash
-
-	env/bin/nextgisweb  --config "config.ini" backup "backup/ngwbackup" --no-zip
-
-В ОС FreeBSD есть ошибка: поддержка sqlite не переносится virtualenv. Нужно 
-вручную скопировать файл:
-
-.. code:: bash
-
-	cp /usr/local/lib/python2.7/site-packages/_sqlite3.so \
-	env/lib/python2.7/site-packages/
-
-
-Миграция выполняется в следующем порядке:
-
-1. На старом сервере запускается процедура резервного копирования.
-
-.. code:: bash
-
-	env/bin/nextgisweb  --config "config.ini" backup "backup/ngwbackup" --no-zip
-
-2. Если необходимо перенести базу PostGIS с геоданными, то со старого сервера 
-   делается ее резервная копия программой pgAdminIII в формате tar.
-3. На новом сервере устанавливаем NextGIS Web согласно инструкции (см. разд. 2).
-4. На новом сервере создается база данных для NextGIS Web, и настраиваются  
-   права доступа программой pgAdminIII.
-5. На новом сервере в файле config.ini необходимо указать подключение к базе 
-   NextGIS Web.
-
- 
-.. code::
-
-	# Имя сервера БД 
-	database.host = localhost
-	# Имя БД на сервере 
-	database.name = zapoved_ngw
-	# Имя пользователя БД 
-	database.user = user
-	# Пароль пользователя БД 
-	database.password = password
-
-
-6. На новом сервере выполняем команду: 
-
-.. code:: bash
-
-	env/bin/nextgisweb  --config "config.ini" restore "backup/ngwbackup"
-
-7. Запустите NextGIS Web. Должно работать всё, кроме слоёв PostGIS (при их  
-   наличии).
-8. Если необходимо перенести базу PostGIS с геоданными, то создается новая база 
-   данных, в нее разворачивается резервная копия со старого сервера.
-9. В настройках подключений PostGIS указывается новый адрес сервера. 
-
-Если появляется ошибка "No module named pysqlite2" - значит при установке вы 
-забыли перенести sqlite. Выполните нужную команду из инструкции по установке.
-
-
-Обновление ПО
--------------
-
-Для обновления ПО NextGIS Web необходимо выполнить команду:
-
-.. code:: bash
-
-	cd ~/ngw/nextgisweb
-	git pull
-	
-Если в файле setup.py добавились какие-то зависимости, то следует выполнить:	
-
-.. code:: bash
-
-	sudo pip install -e ~/ngw/nextgisweb 
-	
-Обновление структуры БД:	
-
-.. code:: bash
-
-	cd ../
-	env/bin/nextgisweb --config config.ini initialize_db
-
-Кроме того, следует обновить пакет nextgisweb_mapserver:
-
-.. code:: bash
-
-	cd ./nextgisweb_mapserver
-	git pull
-
-После выполнения команд необходимо перезапустить ПО NextGIS Web либо перезапуском 
-pserve, либо веб-сервера с модулем uWSGI.
-
-
-Ошибки и предупреждения
------------------------
-
-В ходе работы ПО могут выдаваться диагностические сообщения в окно консоли, где 
-запущен pserve или в лог:
-
-.. code:: bash
-
-    ault.py:471: SAWarning: Unicode type received non-unicode bind param value.
-    processors[key](compiled_params[key])
-
-Данное сообщение является несущественным.
-
-Если предполагается работа с API из leaflet или OpenLayers, то на сервере нужно настроить технологию CORS.
+    env/bin/nextgisweb --config config.ini compulink.init_db

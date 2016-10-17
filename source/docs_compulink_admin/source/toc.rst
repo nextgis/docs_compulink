@@ -20,4 +20,3 @@ Cодержание:
    webmaps_client
    admin_tasks 
    sysadmin     
-   extension

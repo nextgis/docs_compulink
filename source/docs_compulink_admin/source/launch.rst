@@ -440,3 +440,7 @@ nginx + uwsgi (вариант 3)
 
 	cat /var/log/uwsgi/app/ngw.log
 	
+
+
+.. warning::
+   Текущая установка Compulink использует способ **nginx + uwsgi (вариант 2)**

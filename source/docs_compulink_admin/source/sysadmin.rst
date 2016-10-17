@@ -12,5 +12,6 @@
    :maxdepth: 2
    
    install-ubuntu
-   install-centos7
    launch
+   backups
+   load-data
