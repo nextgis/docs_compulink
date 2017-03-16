@@ -15,3 +15,6 @@
    launch
    backups
    load-data
+   update-styles
+   update-legend
+
