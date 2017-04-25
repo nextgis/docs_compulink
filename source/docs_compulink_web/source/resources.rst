@@ -15,14 +15,12 @@
 3. Разрешения пользователей
 4. Создание ресурсов
 
-
 .. figure:: _static/compulink/resources_window.png
    :name: resources_window
    :align: center
    :width: 15.8cm
 
    Окно ресурсов
-
 
 .. figure:: _static/compulink/resources_window_2.png
    :name: resources_window_2
@@ -39,6 +37,6 @@
 
    Пример создания ресурса
    
-
+Описание работы с ресурсами представлено в Руководстве администратора.
    
 

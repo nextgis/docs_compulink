@@ -12,6 +12,7 @@ Cодержание:
    start
    intro
    main_window
+   accepted_region_panel
    editor
    pleer
    resources
