@@ -112,7 +112,7 @@ todo_include_todos = True
 
 numfig = True
 
-numfig_format = {'figure': u'Рис. %s', 'table': u'Таблица %s', 'code-block': u'Listing %s'}
+numfig_format = {'figure': u'Рис. %s', 'table': u'Таблица %s', 'code-block': u'Listing %s', }
 
 illufig_format = {'illustrate': u'Рис. %s (%s)'}
 
@@ -224,7 +224,7 @@ latex_elements = {
 'papersize': 'a4paper',
 
 # The font size ('10pt', '11pt' or '12pt').
-'pointsize': '11pt',
+'pointsize': '10pt',
 
 'classoptions': ',openany,oneside', 
 
@@ -245,11 +245,8 @@ latex_elements = {
 \DeclareUnicodeCharacter{2193}{\ensuremath{\downarrow}}
 ''',
 
-'babel': r'''
-\usepackage[T2A]{fontenc}
-\usepackage[russian]{babel}
-\usepackage[utf8]{inputenc}
-''',
+'babel' : '\\usepackage[russian]{babel}',
+
 
 # Latex figure (float) alignment
 'figure_align': 'htbp',

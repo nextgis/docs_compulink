@@ -12,15 +12,16 @@
 Данная информация необходима для построения графиков и отчетов о реализации проекта Устранение цифрового неравенства, в части выявления принадлежности объектов строительства к данному проекту.
 
 .. _table-project:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы project
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-    id, int, Идентификатор
-    name, varchar, Наименование
-    "short_name", varchar, Короткое название
-    "description", text, Описание
-    "root\_resource\_id", int, "Идентификатор ресурса группового слоя, содержащего все объекты строительства. Родительская таблица public.resource"
+    id, PK, serial, нет, Идентификатор
+    name,, character varying (300), да, Наименование
+    "short_name",, character varying (100), да, Короткое название
+    "description",, text, да, Описание
+    "root\_resource\_id",, integer, да, "Идентификатор ресурса группового слоя, содержащего все объекты строительства. Родительская таблица public.resource"
+    "keyname", UNIQ, character varying (100), да, "Ключевое имя. Используется для отметок проектов, которые учитываются при сборе статистики проекта УЦН"
 
 
 
@@ -33,26 +34,26 @@
 Связь со структурами слоев объектов строительства осуществляется  через внешний идентифиактор.
 
 .. _table-construct-object:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы construct\_object
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   resource\_id              ,int                       ,Идентификатор ресурса группового слоя. Родительская таблица public.resource
-   name                      ,varchar                   ,Наименование ВОЛС
-   external\_id              ,varchar                   ,Внешний идентификатор
-   district                  ,int                       ,Район
-   region                    ,int                       ,Регион
-   project\_id               ,int                       ,Идентификатор проекта. Родительская таблица :ref:`project<table-project>`
-   subcontr\_name            ,varchar                   ,Подрядчик строительства
-   start\_build\_date        ,Date                      ,Строительство ВОЛС (начало)
-   end\_build\_date          ,Date                      ,Строительство ВОЛС (окончание)
-   start\_deliver\_date      ,Date                      ,Cдача заказчику (начало)
-   end\_deliver\_date        ,Date                      ,Cдача заказчику (окончание)
-   cabling\_plan             ,float                     ,Прокладка ОК План (км)
-   fosc\_plan                ,int                       ,Разварка муфт План (шт)
-   cross\_plan               ,int                       ,Разварка кроссов План (шт)
-   spec\_trans\_plan         ,int                       ,Строительство ГНБ переходов План (шт)
-   access\_point\_plan       ,int                       ,Монтаж точек доступа План (шт)
+   resource\_id              ,PK ,integer                 ,нет ,Идентификатор ресурса группового слоя. Родительская таблица public.resource
+   name                      ,   ,character varying (300) ,да  ,Наименование ВОЛС
+   external\_id              ,   ,character varying (300) ,да  ,Внешний идентификатор
+   district\_id              ,FK ,integer                 ,да  ,Идентификатор района. Родительская таблица :ref:`district<table-district>`
+   region\_id                ,FK ,integer                 ,да  ,Идентификатор региона. Родительская таблица :ref:`region<table-region>`
+   project\_id               ,FK ,integer                 ,да  ,Идентификатор проекта. Родительская таблица :ref:`project<table-project>`
+   subcontr\_name            ,   ,character varying (300) ,да  ,Подрядчик строительства
+   start\_build\_date        ,   ,date                    ,да  ,Строительство ВОЛС (начало)
+   end\_build\_date          ,   ,date                    ,да  ,Строительство ВОЛС (окончание)
+   start\_deliver\_date      ,   ,date                    ,да  ,Cдача заказчику (начало)
+   end\_deliver\_date        ,   ,date                    ,да  ,Cдача заказчику (окончание)
+   cabling\_plan             ,   ,double precision        ,да  ,Прокладка ОК План (км)
+   fosc\_plan                ,   ,integer                 ,да  ,Разварка муфт План (шт)
+   cross\_plan               ,   ,integer                 ,да  ,Разварка кроссов План (шт)
+   spec\_trans\_plan         ,   ,integer                 ,да  ,Строительство ГНБ переходов План (шт)
+   access\_point\_plan       ,   ,integer                 ,да  ,Монтаж точек доступа План (шт)
 
  
 Таблицы хранения информации об административно-территориальном делении
@@ -63,64 +64,64 @@
 регионов к региональным филиалам Ростелекома.
 
 .. _table-federal-district:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы federal\_district
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   name                      ,varchar                   ,Наименование
-   short_name                ,varchar                   ,Короткое название
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   name                      ,   ,character varying (300) ,да  ,Наименование
+   short_name                ,   ,character varying (100) ,да  ,Короткое название
 
 .. _table-region:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы region
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   name                      ,varchar                   ,Наименование
-   short\_name               ,varchar                   ,Короткое название
-   region\_code              ,int                       ,Код региона
-   federal\_dist\_id         ,int                       ,Идентификатор родительского ФО. Родительская таблица :ref:`federal_district <table-federal-district>`
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   name                      ,   ,character varying (300) ,да  ,Наименование
+   short_name                ,   ,character varying (100) ,да  ,Короткое название
+   region\_code              ,   ,integer                 ,да  ,Код региона
+   federal\_dist\_id         ,   ,integer                 ,да  ,Идентификатор родительского ФО. Родительская таблица :ref:`federal_district <table-federal-district>`
 
 .. _table-district:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы district
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   name                      ,varchar                   ,Наименование
-   short\_name               ,varchar                   ,Короткое название
-   region\_id                ,int                       ,Идентификатор родительского региона. Родительская таблица :ref:`region <table-region>`
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   name                      ,   ,character varying (300) ,да  ,Наименование
+   short_name                ,   ,character varying (100) ,да  ,Короткое название
+   region\_id                ,FK ,integer                 ,да  ,Идентификатор родительского региона. Родительская таблица :ref:`region <table-region>`
 
 
 .. _table-rt-macro-division:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы rt\_macro\_division
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   name                      ,varchar                   ,Наименование Макрорегионального филиал Ростелекома
-   short\_name               ,varchar                   ,Короткое название
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   name                      ,   ,character varying (300) ,да  ,Наименование Макрорегионального филиал Ростелекома
+   short_name                ,   ,character varying (100) ,да  ,Короткое название
 
 
 .. _table-rt-branch:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы rt\_branch
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                     ,int      ,Идентификатор
-   name                   ,varchar  ,Наименование Регионального филиала Ростелекома
-   short_name             ,varchar  ,Короткое название
-   macro_division\_id     ,int      ,Идентификатор макрорегионального филиала Ростелекома. Родительская таблица :ref:`rt_macro_division<table-rt-macro-division>`
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   name                      ,   ,character varying (300) ,да  ,Наименование Регионального филиала Ростелекома
+   short_name                ,   ,character varying (100) ,да  ,Короткое название
+   macro_division\_id        ,FK ,integer                 ,да  ,Идентификатор макрорегионального филиала Ростелекома. Родительская таблица :ref:`rt_macro_division<table-rt-macro-division>`
 
 
 .. _table-rt-branch-region:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы rt\_branch\_region
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   region\_id       ,int    ,Идентификатор субъекта РФ. Родительская таблица :ref:`region<table-region>`
-   rt\_branch\_id   ,int    ,Идентификатор регионального филиала Ростелекома. Родительская таблица :ref:`rt_branch<table-rt-branch>`
+   region\_id              ,PK/FK ,integer               ,нет ,Идентификатор субъекта РФ. Родительская таблица :ref:`region<table-region>`
+   rt\_branch\_id          ,FK    ,integer               ,нет ,Идентификатор регионального филиала Ростелекома. Родительская таблица :ref:`rt_branch<table-rt-branch>`
 
 
 
@@ -136,15 +137,15 @@
 Агрегация записей по полям resource\_id и build\_date позволяет получить общее количество разваренных муфт (всех типов) для объекта строительства на каждую дату строительства.
 Агрегация записей по полям resource\_id и fosc\_type позволяет получить общее количество разваренных муфт каждого типа для объекта строительства.
 
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы built\_fosc
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   resource\_id              ,int                       ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
-   build\_date               ,int                       ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
-   fosc\_count               ,int                       ,Кол-во развараренных муфт (шт)
-   fosc\_type                ,text                      ,Тип муфты. Родительская таблица :ref:`fosc_type<table-fosc-type>`
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   resource\_id              ,   ,integer                 ,нет ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
+   build\_date\_id           ,FK ,integer                 ,нет ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
+   fosc\_count               ,   ,integer                 ,нет ,Кол-во развараренных муфт (шт)
+   fosc\_type\_id            ,FK ,integer                 ,да  ,Тип муфты. Родительская таблица :ref:`fosc_type<table-fosc-type>`
 
 
 
@@ -153,15 +154,15 @@
 Агрегация записей по полям resource\_id и build\_date позволяет получить общую протяженность кабеля, проложенного всеми способами, для объекта строительства на каждую дату строительства.
 Агрегация записей по полям resource\_id и laying\_method позволяет получить общую протяженность кабеля, проложенного каждым способом прокладки, для объекта строительства.
 
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы built\_cable
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   resource\_id              ,int                       ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
-   build\_date               ,int                       ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
-   cable\_length             ,float                     ,Протяженность проложенного кабеля (км)
-   laying\_method            ,text                      ,Способ прокладки. Родительская таблица :ref:`cable_laying_method<table-cable-laying-method>`
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   resource\_id              ,   ,integer                 ,нет ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
+   build\_date\_id           ,FK ,integer                 ,нет ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
+   cable\_length             ,   ,double precision        ,нет ,Протяженность проложенного кабеля (км)
+   laying\_method_id         ,FK ,integer                 ,да  ,Способ прокладки. Родительская таблица :ref:`cable_laying_method<table-cable-laying-method>`
 
 
 Каждая запись в таблице built\_optical\_cross содержит количество оптических кроссов типа optical\_cross\_type разваренных в течении дня build\_date для объекта строительства resource\_id.
@@ -169,15 +170,15 @@
 Агрегация записей по полям resource\_id и build\_date позволяет получить общее количество разваренных оптических кроссов (всех типов) для объекта строительства на каждую дату строительства.
 Агрегация записей по полям resource\_id и optical\_cross\_type позволяет получить общее количество разваренных оптических кроссов каждого типа для объекта строительства.
 
-.. tabularcolumns:: |p{4cm}|p{1.5cm}|p{9cm}|
+.. tabularcolumns:: |p{3.6cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.4cm}|
 .. csv-table:: Структура таблицы built\_optical\_cross
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                      ,int   ,Идентификатор
-   resource\_id            ,int   ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
-   build\_date             ,int   ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
-   optical\_cross\_count   ,int   ,Кол-во разваренных кроссов (шт)
-   optical\_cross\_type    ,text  ,Тип кросса. Родительская таблица :ref:`optical_cross_type<table-optical-cross-type>`
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   resource\_id              ,   ,integer                 ,нет ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
+   build\_date\_id           ,FK ,integer                 ,нет ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
+   optical\_cross\_count     ,   ,integer                 ,нет ,Кол-во разваренных кроссов (шт)
+   optical\_cross\_type_id   ,FK ,integer                 ,да ,Тип кросса. Родительская таблица :ref:`optical_cross_type<table-optical-cross-type>`
 
 
 
@@ -186,16 +187,16 @@
 Агрегация записей по полям resource\_id и build\_date позволяет получить общую протяженность и количество спецпереходов, построенных всеми способами, для объекта строительства на каждую дату строительства.
 Агрегация записей по полям resource\_id и spec\_laying\_method позволяет получить общую протяженность и количество спецпереходов, построенных каждым способом прокладки, для объекта строительства.
 
-.. tabularcolumns:: |p{4cm}|p{1.5cm}|p{9cm}|
+.. tabularcolumns:: |p{3.9cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.1cm}|
 .. csv-table:: Структура таблицы built\_spec\_transition
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                    ,int                       ,Идентификатор
-   resource\_id          ,int                       ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
-   build\_date           ,int                       ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
-   spec\_trans\_length   ,int                       ,Протяженность построенных спецпереходов (км)
-   spec\_laying\_method  ,text                      ,Способ прокладки кабеля. Родительская таблица :ref:`spec_laying_method<table-spec-laying-method>`
-   spec\_trans\_count    ,int                       ,Количество построенных спецпереходов
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   resource\_id              ,   ,integer                 ,нет ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
+   build\_date\_id           ,FK ,integer                 ,нет ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
+   spec\_trans\_length       ,   ,integer                 ,нет ,Протяженность построенных спецпереходов (км)
+   spec\_laying\_method\_id  ,FK ,integer                 ,да  ,Способ прокладки кабеля. Родительская таблица :ref:`spec_laying_method<table-spec-laying-method>`
+   spec\_trans\_count        ,   ,integer                 ,нет ,Количество построенных спецпереходов
 
 
 
@@ -204,15 +205,15 @@
 Агрегация записей по полям resource\_id и build\_date позволяет получить общее количество установленных точек доступа (всех типов) для объекта строительства на каждую дату строительства.
 Агрегация записей по полям resource\_id и access\_point\_type  позволяет получить общее количество установленных точек доступа каждого типа для объекта строительства.
 
-.. tabularcolumns:: |p{4cm}|p{1.5cm}|p{9cm}|
+.. tabularcolumns:: |p{3.9cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.1cm}|
 .. csv-table:: Структура таблицы built\_access\_point
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   resource\_id              ,int                       ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
-   build\_date               ,int                       ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
-   access\_point\_count      ,int                       ,Кол-во установленных точек доступа (шт)
-   access\_point\_type       ,text                      ,Тип точки доступа. Родительская таблица :ref:`access_point_type<table-access-point-type>`
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   resource\_id              ,   ,integer                 ,нет ,Идентификатор ресурса группового слоя (ид объекта строительства). Родительская таблица public.resource
+   build\_date\_id           ,FK ,integer                 ,нет ,Дата строительства. Родительская таблица :ref:`calendar<table-calendar>`
+   access\_point\_count      ,   ,integer                 ,нет ,Кол-во установленных точек доступа (шт)
+   access\_point\_type\_id   ,FK ,integer                 ,да  ,Тип точки доступа. Родительская таблица :ref:`access_point_type<table-access-point-type>`
 
 
 
@@ -225,90 +226,89 @@
 Идентификатор записи представляет из себя целое число, поразрядные значения которого соответствуют шаблону  'YYYYMMDD'.
 
 .. _table-calendar:
-.. tabularcolumns:: |p{4.5cm}|p{2cm}|p{8cm}|
+.. tabularcolumns:: |p{4.0cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.0cm}|
 .. csv-table:: Структура таблицы calendar
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   full\_date                ,date                      ,Полная дата
-   year\_number              ,smallint                  ,Год
-   semester\_number          ,smallint                  ,Номер полугодия
-   semester\_name            ,nvarchar                  ,Название полугодия
-   quarter\_number           ,smallint                  ,Номер квартала
-   quarter\_name             ,nvarchar                  ,Название квартала
-   month\_number             ,smallint                  ,Номер месяца
-   month\_name               ,nvarchar                  ,Название месяца
-   year\_week\_number        ,smallint                  ,Номер недели в году
-   month\_week\_number       ,smallint                  ,Номер недели в месяце
-   month\_decade\_number     ,smallint                  ,Номер недели в декаде
-   year\_day\_number         ,smallint                  ,Номер дня в году
-   month\_day\_number        ,smallint                  ,Номер дня в месяце
-   week\_day\_number         ,smallint                  ,Номер дня в недели
-   week\_day\_name           ,nvarchar                  ,Название дня недели
-   week\_day\_short\_name    ,nvarchar                  ,Короткое название дня недели
-   weekend                   ,bit                       ,Выходной
+   id                        ,PK ,integer                 ,нет ,Идентификатор
+   full\_date                ,   ,date                    ,да  ,Полная дата
+   year\_number              ,   ,smallint                ,да  ,Год
+   semester\_number          ,   ,smallint                ,да  ,Номер полугодия
+   semester\_name            ,   ,character varying (15)  ,да  ,Название полугодия
+   quarter\_number           ,   ,smallint                ,да  ,Номер квартала
+   quarter\_name             ,   ,character varying (15)  ,да  ,Название квартала
+   month\_number             ,   ,smallint                ,да  ,Номер месяца
+   month\_name               ,   ,character varying (15)  ,да  ,Название месяца
+   year\_week\_number        ,   ,smallint                ,да  ,Номер недели в году
+   month\_week\_number       ,   ,smallint                ,да  ,Номер недели в месяце
+   month\_decade\_number     ,   ,smallint                ,да  ,Номер недели в декаде
+   year\_day\_number         ,   ,smallint                ,да  ,Номер дня в году
+   month\_day\_number        ,   ,smallint                ,да  ,Номер дня в месяце
+   week\_day\_number         ,   ,smallint                ,да  ,Номер дня в недели
+   week\_day\_name           ,   ,character varying (11)  ,да  ,Название дня недели
+   week\_day\_short\_name    ,   ,character varying (2)   ,да  ,Короткое название дня недели
+   weekend                   ,   ,boolean                 ,да  ,Выходной
 
 
 
 Таблица access\_point\_type содержит описание типов точек доступа. Поле description содержит текстовое описание конкретного типа.
 
 .. _table-access-point-type:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы access\_point\_type
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   description               ,text                      ,Описаение
-   type                      ,varchar                   ,Тип точки доступа
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   description               ,   ,text                    ,да  ,Описание
+   type                      ,   ,character varying (100) ,нет ,Тип точки доступа
 
 Таблица cable\_laying\_method содержит описание методов прокладки кабеля. Поле description содержит текстовое описание конкретного метода.
 
 .. _table-cable-laying-method:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы cable\_laying\_method
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   description               ,text                      ,Описаение
-   method                    ,varchar                   ,Метод прокладки кабеля
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   description               ,   ,text                    ,да  ,Описание
+   method                    ,   ,character varying (100) ,нет ,Метод прокладки кабеля
 
 Таблица fosc\_type содержит описание типов оптических муфт. Поле description содержит текстовое описание конкретного типа.
 
 .. _table-fosc-type:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы fosc\_type
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   description               ,text                      ,Описаение
-   type                      ,varchar                   ,Тип оптической муфты
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   description               ,   ,text                    ,да  ,Описание
+   type                      ,   ,character varying (100) ,нет ,Тип оптической муфты
 
 
 
 Таблица optical\_cross\_type содержит описание типов оптических кроссов. Поле description содержит текстовое описание конкретного типа.
 
 .. _table-optical-cross-type:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы optical\_cross\_type
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   description               ,text                      ,Описаение
-
-   type                      ,varchar                   ,Тип оптического кросса
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   description               ,   ,text                    ,да  ,Описание
+   type                      ,   ,character varying (100) ,нет ,Тип оптического кросса
 
 
 
 Таблица spec\_laying\_method содержит описание типов спецпереходов. Поле description содержит текстовое описание конкретного типа.
 
 .. _table-spec-laying-method:
-.. tabularcolumns:: |p{3.5cm}|p{1.5cm}|p{9.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.6cm}|p{0.7cm}|p{7.5cm}|
 .. csv-table:: Структура таблицы spec\_laying\_method
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   description               ,text                      ,Описаение
-   method                    ,varchar                   ,Тип спецперехода
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   description               ,   ,text                    ,да  ,Описание
+   method                    ,   ,character varying (100) ,нет ,Тип спецперехода
 
 
 
@@ -318,20 +318,21 @@
 Таблица содержит сводную информацию об отклонениях, допущенных при строительстве объектов. 
 Данные из этой таблицы используются для построения отчета об отклонениях.
 
-.. tabularcolumns:: |p{4cm}|p{2cm}|p{8.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.7cm}|p{0.7cm}|p{7.4cm}|
 .. csv-table:: Структура таблицы construct\_deviation
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int                       ,Идентификатор
-   focl\_res\_id             ,int                       ,Идентификатор ресурса. Родительская таблица public.resource
-   focl\_name                ,varchar                   ,Название объекта строительства
-   object\_type              ,varchar                   ,Тип объекта с отклонением
-   object\_num               ,int                       ,Номер объекта с отклонением
-   deviation\_distance       ,int                       ,Расстояние отклонения (м)
-   deviation\_approved       ,bool                      ,Отклонение утверждено
-   approval\_comment         ,varchar                   ,Комментарий к утверждению отклонения
-   approval\_author          ,varchar                   ,"Пользователь, утвердивший отклонение"
-   approval\_timestamp       ,timestamp                 ,Дата и время утверждения отклонения
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   focl\_res\_id             ,   ,integer                 ,нет ,Идентификатор ресурса. Родительская таблица public.resource
+   focl\_proj                ,   ,character varying       ,нет ,Название проекта строительства
+   focl\_name                ,   ,character varying       ,нет ,Название объекта строительства
+   object\_type              ,   ,character varying       ,нет ,Тип объекта с отклонением
+   object\_num               ,   ,integer                 ,нет ,Номер объекта с отклонением
+   deviation\_distance       ,   ,integer                 ,нет ,Расстояние отклонения (м)
+   deviation\_approved       ,   ,boolean                 ,нет ,Отклонение утверждено
+   approval\_comment         ,   ,character varying       ,да  ,Комментарий к утверждению отклонения
+   approval\_author          ,   ,character varying       ,да  ,"Пользователь, утвердивший отклонение"
+   approval\_timestamp       ,   ,timestamp wtz           ,да  ,Дата и время утверждения отклонения
 
 
 Таблица хранения информации о статусе строительства
@@ -340,35 +341,35 @@
 Таблица содержит сводную информацию о всех объектах строительства и текущем состоянии этих объектов. 
 Данные из этой таблицы используются для построения отчета о статусе строительства.
 
-.. tabularcolumns:: |p{4cm}|p{2cm}|p{8.5cm}|
+.. tabularcolumns:: |p{3.5cm}|p{1.6cm}|p{1.7cm}|p{0.7cm}|p{7.4cm}|
 .. csv-table:: Структура таблицы status\_report
-   :header: "Поле", "Тип", "Описание"
+   :header: "Поле", "PK\/FK\/UN", "Тип", "Null", "Описание"
 
-   id                        ,int        ,Идентификатор
-   focl\_res\_id             ,int        ,Идентификатор ресурса. Родительская таблица public.resource
-   focl\_name                ,varchar    ,Название объекта строительства
-   region                    ,int        ,Регион. Родительская таблица :ref:`region<table-region>`
-   district                  ,int        ,Район. Родительская таблица :ref:`disrtict<table-district>`
-   status                    ,varchar    ,Статус строительства
-   subcontr\_name            ,varchar    ,Подрядчик строительства
-   start\_build\_time        ,timestamp  ,Строительство ВОЛС (начало)
-   end\_build\_time          ,timestamp  ,Строительство ВОЛС (окончание)
-   start\_deliver\_time      ,timestamp  ,Cдача заказчику (начало)
-   end\_deliver\_time        ,timestamp  ,Cдача заказчику (окончание)
-   cabling\_plan             ,double     ,Прокладка ОК. План (км)
-   cabling\_fact             ,double     ,Прокладка ОК. Факт (км)
-   cabling\_percent          ,int        ,Прокладка ОК. Процент выполнения (%)
-   fosc\_plan                ,int        ,Разварка муфт. План (шт)
-   fosc\_fact                ,int        ,Разварка муфт. Факт (шт)
-   fosc\_percent             ,int        ,Разварка муфт. Процент выполнения (%)
-   cross\_plan               ,int        ,Разварка кроссов. План (шт)
-   cross\_fact               ,int        ,Разварка кроссов. Факт (шт)
-   cross\_percent            ,int        ,Разварка кроссов. Процент выполнения (%)
-   spec\_trans\_plan         ,int        ,Строительство ГНБ переходов. План (шт)
-   spec\_trans\_fact         ,int        ,Строительство ГНБ переходов. Факт (шт)
-   spec\_trans\_percent      ,int        ,Строительство ГНБ переходов. Процент выполнения (%)
-   ap\_plan                  ,int        ,Монтаж точек доступа. План (шт)
-   ap\_fact                  ,int        ,Монтаж точек доступа. Факт (шт)
-   ap\_percent               ,int        ,Монтаж точек доступа. Процент выполнения (%)
-   is\_overdue               ,bool       ,Просрочена дата сдачи
-   is\_month\_overdue        ,bool       ,Просрочена дата сдачи более чем на месяц
+   id                        ,PK ,serial                  ,нет ,Идентификатор
+   focl\_res\_id             ,   ,integer                 ,да  ,Идентификатор ресурса. Родительская таблица public.resource
+   focl\_name                ,   ,character varying       ,да  ,Название объекта строительства
+   region                    ,   ,integer                 ,да  ,Регион. Родительская таблица :ref:`region<table-region>`
+   district                  ,   ,integer                 ,да  ,Район. Родительская таблица :ref:`disrtict<table-district>`
+   status                    ,   ,character varying       ,да  ,Статус строительства
+   subcontr\_name            ,   ,character varying       ,да  ,Подрядчик строительства
+   start\_build\_time        ,   ,timestamp wtz           ,да  ,Строительство ВОЛС (начало)
+   end\_build\_time          ,   ,timestamp wtz           ,да  ,Строительство ВОЛС (окончание)
+   start\_deliver\_time      ,   ,timestamp wtz           ,да  ,Cдача заказчику (начало)
+   end\_deliver\_time        ,   ,timestamp wtz           ,да  ,Cдача заказчику (окончание)
+   cabling\_plan             ,   ,double precision        ,да  ,Прокладка ОК. План (км)
+   cabling\_fact             ,   ,double precision        ,да  ,Прокладка ОК. Факт (км)
+   cabling\_percent          ,   ,integer                 ,да  ,Прокладка ОК. Процент выполнения (%)
+   fosc\_plan                ,   ,integer                 ,да  ,Разварка муфт. План (шт)
+   fosc\_fact                ,   ,integer                 ,да  ,Разварка муфт. Факт (шт)
+   fosc\_percent             ,   ,integer                 ,да  ,Разварка муфт. Процент выполнения (%)
+   cross\_plan               ,   ,integer                 ,да  ,Разварка кроссов. План (шт)
+   cross\_fact               ,   ,integer                 ,да  ,Разварка кроссов. Факт (шт)
+   cross\_percent            ,   ,integer                 ,да  ,Разварка кроссов. Процент выполнения (%)
+   spec\_trans\_plan         ,   ,integer                 ,да  ,Строительство ГНБ переходов. План (шт)
+   spec\_trans\_fact         ,   ,integer                 ,да  ,Строительство ГНБ переходов. Факт (шт)
+   spec\_trans\_percent      ,   ,integer                 ,да  ,Строительство ГНБ переходов. Процент выполнения (%)
+   ap\_plan                  ,   ,integer                 ,да  ,Монтаж точек доступа. План (шт)
+   ap\_fact                  ,   ,integer                 ,да  ,Монтаж точек доступа. Факт (шт)
+   ap\_percent               ,   ,integer                 ,да  ,Монтаж точек доступа. Процент выполнения (%)
+   is\_overdue               ,   ,boolean                 ,да  ,Просрочена дата сдачи
+   is\_month\_overdue        ,   ,boolean                 ,да  ,Просрочена дата сдачи более чем на месяц
