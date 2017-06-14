@@ -17,4 +17,4 @@
    load-data
    update-styles
    update-legend
-
+   add-new-layer-to-defaults
